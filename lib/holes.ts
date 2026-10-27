@@ -6,7 +6,7 @@ export const HOLES = [
     par: 2,
     yards: 401,
     fx: 0.2,
-    fy: 0.22,
+    fy: 0.25,
     title: "",
     body: "",
     items: [],
@@ -18,7 +18,7 @@ export const HOLES = [
     par: 2,
     yards: 389,
     fx: 0.71,
-    fy: 0.31,
+    fy: 0.28,
     title: "FAST Enterprises.",
     body: "",
     items: [

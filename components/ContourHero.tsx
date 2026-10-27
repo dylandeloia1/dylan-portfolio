@@ -399,7 +399,7 @@ export default function ContourHero() {
           {/* the label */}
           <span
             onClick={() => setOpen(i)}
-            className={`pointer-events-auto absolute left-0 top-0 mt-[26px] -translate-x-1/2 cursor-pointer whitespace-nowrap font-mono text-[12px] uppercase tracking-[0.25em] transition-colors duration-200 sm:text-[16px] ${
+            className={`pointer-events-auto absolute left-0 top-0 mt-[26px] -translate-x-1/2 cursor-pointer whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.25em] transition-colors duration-200 sm:text-[16px] ${
               done.includes(i)
                 ? "text-[#ff6a1a]"
                 : "text-[#ece9d8]/60 group-hover:text-[#ff6a1a]"
