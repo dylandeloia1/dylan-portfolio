@@ -52,7 +52,7 @@ export const HOLES = [
     title: "More About Me",
     body: "",
   items: [
-    "Graduated from University of North Carolina at Charlotte with a BS in Computer Science and a concentration in Software Engineering.",
+    "Graduated from the University of North Carolina at Charlotte with a BS in Computer Science and a concentration in Software Engineering.",
     "I am analytical and often seeking new complex problems to immerse myself into to find the best solutions.",
     "I am always exploring new technologies and searching for creative ideas.",
     "Outside of coding: I enjoy math, physics, music, art, and spending time with my family and friends."
