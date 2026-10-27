@@ -1,0 +1,61 @@
+export const HOLES = [
+  {
+    number: 1,
+    label: "Résumé",
+    type: "resume",
+    par: 2,
+    yards: 401,
+    fx: 0.2,
+    fy: 0.22,
+    title: "",
+    body: "",
+    items: [],
+  },
+  {
+    number: 2,
+    label: "Fast Enterprises",
+    type: "fast",
+    par: 2,
+    yards: 389,
+    fx: 0.71,
+    fy: 0.31,
+    title: "FAST Enterprises.",
+    body: "",
+    items: [
+      "FAST Enterprises is a software company that builds commercial-off-the-shelf (COTS) software for government agencies around the world.",
+      "In my role as an Implementation Consultant, I was responsible for the development and delivery of numerous government software projects.",
+      "I met with clients, learned about many unique business processes, gathered project requirements, communicated both technically and non-technically, and delivered solutions both on time and on budget.",
+      "Some of these projects included: Development for the State of Oklahoma to collect and manage a new tax type. A new Non-Filer Discovery process for North Dakota State Corporate Income Tax. Maintaining software compliance to new tax year legislations.",
+      "Through these projects, I gained invaluable professional experience in a dynamic and adverse technical environment, while learning and refining my technical engineering skills."
+    ],
+  },
+  {
+    number: 3,
+    label: "Contact",
+    type: "contact",
+    par: 2,
+    yards: 408,
+    fx: 0.25,
+    fy: 0.81,
+    title: "Lets chat",
+    body: "Have an idea in mind, an interesting problem, or just want to connect? I'd like to hear from you.",
+    items: ["linkedin.com/in/dylandeloia", "github.com/dylandeloia1", "instagram.com/__dylanbrian"]
+  },
+  {
+    number: 4,
+    label: "About Me",
+    type: "about",
+    par: 2,
+    yards: 187,
+    fx: 0.76,
+    fy: 0.74,
+    title: "More About Me",
+    body: "",
+  items: [
+    "Graduated from University of North Carolina at Charlotte with a BS in Computer Science and a concentration in Software Engineering.",
+    "I am analytical and often seeking new complex problems to immerse myself into to find the best solutions.",
+    "I am always exploring new technologies and searching for creative ideas.",
+    "Outside of coding: I enjoy math, physics, music, art, and spending time with my family and friends."
+  ],
+  },
+];
