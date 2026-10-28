@@ -406,7 +406,7 @@ export default function ContourHero() {
 
           {/* pennant */}
           <div
-            className="flag-wave absolute left-px top-0 -mt-[44px] transition-transform duration-[120ms] group-hover:-translate-y-2"
+            className="flag-wave absolute left-px top-0 -mt-[44px] transition-[margin] duration-[120ms] group-hover:-mt-[52px]"
             style={{
               width: 0,
               height: 0,
