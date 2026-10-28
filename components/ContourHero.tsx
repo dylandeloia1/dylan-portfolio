@@ -37,9 +37,9 @@ const DEFAULT_RATING = 100; // "standard" slope rating
 const slopeFor = (rating: number) => (rating - 55) * (1.3 / 58);
 const FRICTION = 1.1; // rolling resistance (per second)
 const POWER = 4.5; // shot strength
-const MAX_PULL = 200; // max drag distance in px
+const MAX_PULL = 240; // max drag distance in px
 const CUP_PX = 18; // cup radius in px
-const CAPTURE_V = 2.1; // ball must be slower than this to drop in
+const CAPTURE_V = 2.5; // ball must be slower than this to drop in
 const SINK_T = 0.28; // seconds for the drop animation
 
 const VERT = `#version 300 es
