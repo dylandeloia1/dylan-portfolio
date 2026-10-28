@@ -80,6 +80,7 @@ export default function ContourHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
   const teeRef = useRef<HTMLDivElement>(null);
+  const teeBoxRef = useRef<HTMLDivElement>(null);
   const hudRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<SVGLineElement>(null);
   const cupRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -163,6 +164,8 @@ export default function ContourHero() {
       scale = 1;
     let sink: { i: number; t: number } | null = null;
     let hasShot = false;
+    let startX = 0.5;
+    let startY = 0.78;
 
     let w = 0,
       h = 0,
@@ -193,8 +196,8 @@ export default function ContourHero() {
       layout();
     };
     const respawn = () => {
-      px = 0.5 * ww;
-      py = 0.78 * wh;
+      px = startX * ww;
+      py = startY * wh;
       vx = vy = 0;
       scale = 1;
       sink = null;
@@ -319,6 +322,13 @@ export default function ContourHero() {
 
       ballRef.current!.style.transform = `translate3d(${sx}px, ${sy}px, 0) scale(${scale})`;
 
+      if (teeBoxRef.current) {
+        const teeX = ((startX * ww) / SCALE) * m;
+        const teeY = ((startY * wh) / SCALE) * m;
+
+        teeBoxRef.current.style.transform = `translate3d(${teeX}px, ${teeY + 7}px, 0)`;
+      }
+
       if (teeRef.current) {
         teeRef.current.style.transform = `translate3d(${sx}px, ${sy + 7}px, 0)`;
         teeRef.current.style.opacity = hasShot ? "0" : "1";
@@ -375,15 +385,27 @@ export default function ContourHero() {
     >
       <canvas ref={canvasRef} className="block h-full w-full" />
 
+      {/* tee box */}
+      <div
+        ref={teeBoxRef}
+        className="pointer-events-none absolute left-0 top-0 z-10"
+      >
+        <div className="absolute -left-[21px] -top-[21px] h-[42px] w-[42px] rounded-sm border border-[#ece9d8]/35" />
+
+        <span className="absolute left-0 top-[25px] -translate-x-1/2 whitespace-nowrap font-mono text-[9px] uppercase tracking-[0.25em] text-[#ece9d8]/35">
+          TEE BOX
+        </span>
+      </div>
+
       <style>{`
         @keyframes flag-wave {
-  from { opacity: 0.88; }
-  to   { opacity: 1; }
-}
-.flag-wave {
-  animation: flag-wave 1s ease-in-out infinite alternate;
-}
-      `}</style>
+          from { opacity: 0.88; }
+          to   { opacity: 1; }
+        }
+        .flag-wave {
+         animation: flag-wave 1s ease-in-out infinite alternate;
+        }
+     `}</style>
 
       {HOLES.map((c, i) => (
         <div
@@ -403,7 +425,7 @@ export default function ContourHero() {
             }`}
           />
 
-         {/* flagstick and pennant */}
+          {/* flagstick and pennant */}
           <div className="absolute left-0 top-0 -mt-[44px] h-[44px] w-[18px] origin-bottom transition-transform duration-150 ease-out group-hover:-translate-y-2">
             {/* shaft */}
             <div className="absolute bottom-0 left-0 h-full w-[1px] bg-[#ece9d8]/80" />
