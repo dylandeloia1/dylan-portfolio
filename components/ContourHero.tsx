@@ -375,6 +375,14 @@ export default function ContourHero() {
     >
       <canvas ref={canvasRef} className="block h-full w-full" />
 
+      <style>{`
+        @keyframes flag-wave {
+          from { transform: scaleX(0.82) skewY(-4deg); }
+          to   { transform: scaleX(1)    skewY(4deg);  }
+        }
+        .flag-wave { animation: flag-wave 1.2s ease-in-out infinite alternate; }
+      `}</style>
+
       {HOLES.map((c, i) => (
         <div
           key={c.label}
@@ -492,17 +500,18 @@ export default function ContourHero() {
       <div
         data-ui
         className="absolute left-1/2 top-14 flex -translate-x-1/2 flex-col items-center gap-3 font-mono text-[14px] uppercase tracking-[0.25em]"
+        style={{ touchAction: "none" }}
       >
         <div className="flex gap-2 sm:gap-3">
           <button
             onClick={resetBall}
-            className="whitespace-nowrap border border-[#ece9d8]/30 px-3 py-1 text-[11px] text-[#ece9d8]/70 transition-all hover:border-[#ff6a1a] hover:text-[#ff6a1a] sm:px-3 sm:py-1.5 sm:text-base duration-150 hover:scale-105"
+            className="touch-none whitespace-nowrap border border-[#ece9d8]/30 px-3 py-1 text-[11px] text-[#ece9d8]/70 transition-all hover:border-[#ff6a1a] hover:text-[#ff6a1a] sm:px-3 sm:py-1.5 sm:text-base duration-150 hover:scale-105"
           >
             Reset Ball
           </button>
           <button
             onClick={resetCourse}
-            className="whitespace-nowrap border border-[#ece9d8]/30 px-3 py-1 text-[11px] text-[#ece9d8]/70 transition-all hover:border-[#ff6a1a] hover:text-[#ff6a1a] sm:px-3 sm:py-1.5 sm:text-base duration-150 hover:scale-105"
+            className="touch-none whitespace-nowrap border border-[#ece9d8]/30 px-3 py-1 text-[11px] text-[#ece9d8]/70 transition-all hover:border-[#ff6a1a] hover:text-[#ff6a1a] sm:px-3 sm:py-1.5 sm:text-base duration-150 hover:scale-105"
           >
             New Course
           </button>
@@ -524,7 +533,7 @@ export default function ContourHero() {
               setRating(v);
               slopeRef.current = slopeFor(v);
             }}
-            className="h-1 min-w-0 flex-1 cursor-pointer accent-[#ff6a1a] sm:flex-none sm:w-32"
+            className="touch-none h-1 min-w-0 flex-1 cursor-pointer accent-[#ff6a1a] sm:flex-none sm:w-32"
           />
           <span className="w-6 shrink-0 text-right sm:w-8">{rating}</span>
         </div>

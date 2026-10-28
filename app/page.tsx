@@ -10,7 +10,8 @@ export default function Home() {
     <main className="relative h-[100dvh] overflow-hidden text-[#ece9d8] sm:min-h-screen sm:h-auto sm:overflow-visible">
       <ContourHero />
 
-      <section className="pointer-events-none relative z-10 flex h-full min-h-0 flex-col justify-between p-4 sm:min-h-screen sm:p-6 md:p-10">
+      <section className="pointer-events-none relative z-10 flex h-full min-h-0 flex-col justify-between p-4 sm:min-h-screen sm:p-6 md:p-10"
+        style={{ touchAction: "none" }}>
         <header
           className={`${mono.className} flex justify-end text-xs uppercase tracking-[0.25em] text-[#ece9d8]/60`}
         >
