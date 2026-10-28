@@ -32,7 +32,7 @@ const SCALE = 6; // world units across the shorter screen side
 const LEVELS = 6; // contour density
 
 // Game tuning
-const DEFAULT_RATING = 110; // "standard" slope rating
+const DEFAULT_RATING = 100; // "standard" slope rating
 
 const slopeFor = (rating: number) => (rating - 55) * (1.3 / 58);
 const FRICTION = 1.1; // rolling resistance (per second)

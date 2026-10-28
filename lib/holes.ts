@@ -19,7 +19,7 @@ export const HOLES = [
     yards: 389,
     fx: 0.71,
     fy: 0.28,
-    title: "FAST Enterprises.",
+    title: "FAST Enterprises",
     body: "",
     items: [
       "FAST Enterprises is a software company that builds commercial-off-the-shelf (COTS) software for government agencies around the world.",

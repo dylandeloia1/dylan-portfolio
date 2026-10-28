@@ -24,13 +24,13 @@ export default function Home() {
             Building creative solutions that solve real problems.
           </p>
 
-          <p className="text-xl font-semibold leading-relaxed text-[#ece9d8]">
+          <p className="text-xl leading-relaxed text-[#ece9d8]">
             I'm{" "}
-            <span className="text-2xl text-[#ff6a1a] sm:text-[#fafaf8] font-bold tracking-tight sm:text-2xl md:text-3xl">
+            <span className="text-7xl text-[#ff6a1a] sm:text-[#fafaf8] font-bold tracking-tight sm:text-2xl md:text-3xl">
               Dylan D'Eloia
             </span>
             <span className="hidden sm:inline">
-              , a detail-oriented software engineer.
+              , a detail-oriented software engineer who enjoys turning complex problems into thoughtful and intuitive software.
             </span>
           </p>
           <div className="pointer-events-auto mt-4 flex flex-wrap gap-2 text-[9px] uppercase tracking-[0.08em] sm:mt-5 sm:gap-2.5 sm:text-xs sm:tracking-[0.1em]">
@@ -46,7 +46,7 @@ export default function Home() {
               "MATLAB ",
               "Logic and Algorithms",
               "Github",
-              "Claude Code",
+              "AI Prompt Engineering",
               "CI/CD",
               "Golf",
             ].map((skill) => (
@@ -59,8 +59,7 @@ export default function Home() {
             ))}
           </div>
           <p className="mt-3 text-xs text-[#ece9d8]/70 sm:mt-5 sm:text-base">
-            Explore my work and experience...
-            <span className="block sm:inline"> take a few putts!</span>
+            <span className="block sm:inline"> Click on the holes, or click anywhere and drag and release to make a putt!</span>
           </p>
         </div>
 
