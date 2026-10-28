@@ -377,10 +377,12 @@ export default function ContourHero() {
 
       <style>{`
         @keyframes flag-wave {
-          from { transform: scaleX(0.82) skewY(-4deg); }
-          to   { transform: scaleX(1)    skewY(4deg);  }
-        }
-        .flag-wave { animation: flag-wave 1.2s ease-in-out infinite alternate; }
+  from { opacity: 0.88; }
+  to   { opacity: 1; }
+}
+.flag-wave {
+  animation: flag-wave 1s ease-in-out infinite alternate;
+}
       `}</style>
 
       {HOLES.map((c, i) => (
@@ -401,26 +403,29 @@ export default function ContourHero() {
             }`}
           />
 
-          {/* flagstick */}
-          <div className="absolute left-0 top-0 -mt-[44px] h-[44px] w-[1px] bg-[#ece9d8]/80 transition-transform duration-[120ms] group-hover:-translate-y-2" />
+         {/* flagstick and pennant */}
+          <div className="absolute left-0 top-0 -mt-[44px] h-[44px] w-[18px] origin-bottom transition-transform duration-150 ease-out group-hover:-translate-y-2">
+            {/* shaft */}
+            <div className="absolute bottom-0 left-0 h-full w-[1px] bg-[#ece9d8]/80" />
 
-          {/* pennant */}
-          <div
-            className="flag-wave absolute left-px top-0 -mt-[44px] transition-[margin] duration-[120ms] group-hover:-mt-[52px]"
-            style={{
-              width: 0,
-              height: 0,
-              borderTop: "8px solid transparent",
-              borderBottom: "8px solid transparent",
-              borderLeft: "16px solid #ff6a1a",
-              transformOrigin: "left center",
-            }}
-          />
+            {/* pennant */}
+            <div
+              className="flag-wave absolute left-px top-0"
+              style={{
+                width: 0,
+                height: 0,
+                borderTop: "8px solid transparent",
+                borderBottom: "8px solid transparent",
+                borderLeft: "16px solid #ff6a1a",
+                transformOrigin: "left center",
+              }}
+            />
+          </div>
 
           {/* the label */}
           <span
             onClick={() => setOpen(i)}
-            className={`pointer-events-auto absolute left-0 top-0 mt-[26px] -translate-x-1/2 cursor-pointer whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.25em] transition-colors duration-200 sm:text-[16px] ${
+            className={`pointer-events-auto absolute left-0 top-0 mt-[26px] -translate-x-1/2 cursor-pointer whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.25em] transition-all duration-200 ease-out group-hover:scale-105 sm:text-[16px] ${
               done.includes(i)
                 ? "text-[#ff6a1a]"
                 : "text-[#ece9d8]/60 group-hover:text-[#ff6a1a]"
