@@ -42,7 +42,7 @@ export default function Home() {
               "C#",
               "VB.Net",
               "Java",
-              "Javacript",
+              "Javascript",
               "React.js",
               "Solution Architecture",
               "MATLAB ",
