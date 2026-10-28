@@ -37,9 +37,9 @@ const DEFAULT_RATING = 100; // "standard" slope rating
 const slopeFor = (rating: number) => (rating - 55) * (1.3 / 58);
 const FRICTION = 1.1; // rolling resistance (per second)
 const POWER = 4.5; // shot strength
-const MAX_PULL = 240; // max drag distance in px
+const MAX_PULL = 250; // max drag distance in px
 const CUP_PX = 18; // cup radius in px
-const CAPTURE_V = 2.5; // ball must be slower than this to drop in
+const CAPTURE_V = 3.0; // ball must be slower than this to drop in
 const SINK_T = 0.28; // seconds for the drop animation
 
 const VERT = `#version 300 es
@@ -79,6 +79,7 @@ const gradient = (waves: Wave[], x: number, y: number): [number, number] =>
 export default function ContourHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ballRef = useRef<HTMLDivElement>(null);
+  const teeRef = useRef<HTMLDivElement>(null);
   const hudRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<SVGLineElement>(null);
   const cupRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -161,6 +162,7 @@ export default function ContourHero() {
       vy = 0,
       scale = 1;
     let sink: { i: number; t: number } | null = null;
+    let hasShot = false;
 
     let w = 0,
       h = 0,
@@ -192,10 +194,11 @@ export default function ContourHero() {
     };
     const respawn = () => {
       px = 0.5 * ww;
-      py = 0.5 * wh;
+      py = 0.78 * wh;
       vx = vy = 0;
       scale = 1;
       sink = null;
+      hasShot = false;
     };
     respawnRef.current = respawn;
     resize();
@@ -226,6 +229,7 @@ export default function ContourHero() {
       const k = Math.min(len, MAX_PULL) / len;
       vx = ((dx * k) / m) * SCALE * POWER;
       vy = ((dy * k) / m) * SCALE * POWER;
+      hasShot = true;
       setStrokes((n) => n + 1);
     };
     window.addEventListener("pointerdown", onDown);
@@ -256,17 +260,19 @@ export default function ContourHero() {
             setDone((d) => (d.includes(i) ? d : [...d, i]));
           }
         } else {
-          const [gx, gy] = gradient(waves, px, py);
+          const [gx, gy] = hasShot ? gradient(waves, px, py) : [0, 0];
           let ax = -gx * slopeRef.current,
             ay = -gy * slopeRef.current;
-          cups.forEach((c) => {
-            const dx = c.x - px,
-              dy = c.y - py;
-            if (Math.hypot(dx, dy) < R * 3) {
-              ax += dx * 8;
-              ay += dy * 8;
-            }
-          });
+          if (hasShot) {
+            cups.forEach((c) => {
+              const dx = c.x - px,
+                dy = c.y - py;
+              if (Math.hypot(dx, dy) < R * 3) {
+                ax += dx * 8;
+                ay += dy * 8;
+              }
+            });
+          }
           const speed = Math.hypot(vx, vy);
           vx += ax * dt;
           vy += ay * dt;
@@ -295,7 +301,7 @@ export default function ContourHero() {
             vy = -Math.abs(vy) * 0.5;
           }
 
-          if (Math.hypot(vx, vy) < CAPTURE_V) {
+          if (hasShot && Math.hypot(vx, vy) < CAPTURE_V) {
             cups.forEach((c, i) => {
               if (!sink && Math.hypot(c.x - px, c.y - py) < R)
                 sink = { i, t: 0 };
@@ -310,7 +316,14 @@ export default function ContourHero() {
 
       const sx = (px / SCALE) * m,
         sy = (py / SCALE) * m;
+
       ballRef.current!.style.transform = `translate3d(${sx}px, ${sy}px, 0) scale(${scale})`;
+
+      if (teeRef.current) {
+        teeRef.current.style.transform = `translate3d(${sx}px, ${sy + 7}px, 0)`;
+        teeRef.current.style.opacity = hasShot ? "0" : "1";
+      }
+
       const elev = height(waves, px, py);
       hudRef.current!.textContent = `x ${px.toFixed(2)}  y ${py.toFixed(2)}  z ${elev >= 0 ? "+" : ""}${elev.toFixed(2)}`;
 
@@ -421,6 +434,22 @@ export default function ContourHero() {
           visibility="hidden"
         />
       </svg>
+
+      <div
+        ref={teeRef}
+        className="pointer-events-none absolute left-0 top-0"
+        style={{
+          width: "10px",
+          height: "15px",
+          marginLeft: "-5px",
+          marginTop: "-1px",
+          background:
+            "linear-gradient(90deg, #754321 0%, #d99a55 35%, #f0c27e 55%, #995b2d 100%)",
+          clipPath:
+            "polygon(5% 0, 95% 0, 85% 18%, 62% 28%, 55% 78%, 50% 100%, 45% 78%, 38% 28%, 15% 18%)",
+          opacity: 1,
+        }}
+      />
 
       <div
         ref={ballRef}
